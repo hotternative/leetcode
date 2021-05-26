@@ -9,6 +9,8 @@ class Solution:
             return True
 
         for i in range(0, len(track)):
+            # this is the fun bit, checking if the new entry attacks
+            # existing ones diagonally in upper left and upper right direction
             if track[len(track) - i - 1] == c - i - 1 or track[len(track) - i - 1] == c + i + 1:
                 return False
         return True
