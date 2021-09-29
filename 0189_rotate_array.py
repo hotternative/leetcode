@@ -16,6 +16,11 @@ class Solution:
         nums[k:] = nums[:len(nums)-k]
         nums[:k] = temp
 
+    def rotate2(self, nums: List[int], k: int) -> None:
+        n = len(nums)
+        k = k % n
+        nums[:] = nums[-k:] + nums[:n-k]
+
     def rotate(self, nums: List[int], k: int) -> None:
         n = len(nums)
         k = k % n
