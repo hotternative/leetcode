@@ -14,6 +14,31 @@ import unittest
 
 class Solution:
     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # Dec 2022 Runtime 39 ms Beats 84.35% Memory 13.8 MB Beats 98.48%
+        # https://www.enjoyalgorithms.com/blog/remove-nth-node-from-list-end
+        c = 1
+        cur_node = head
+        while cur_node.next:
+            c += 1
+            cur_node = cur_node.next
+        target = c - n
+
+        if target == 0:
+            return head.next
+
+        c = 1
+        cur_node = head
+        while c < target:
+            c += 1
+            cur_node = cur_node.next
+        cur_node.next = cur_node.next.next
+
+        return head
+
+
+
+    def removeNthFromEnd_2021(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
+        # 2021
         counter = 1
         static_head = head
         while head.next:
