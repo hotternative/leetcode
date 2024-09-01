@@ -8,7 +8,7 @@ from typing import Optional
 from utils.tree_utils import TreeNode
 
 class Solution:
-    def invertTree(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
+    def invertTree_iterative(self, root: Optional[TreeNode]) -> Optional[TreeNode]:
         """Runtime 31 ms Beats 78.60%; Memory 13.8 MB Beats 95.1%"""
         nodes_to_invert = []
         if root:
@@ -25,5 +25,14 @@ class Solution:
                 nodes_to_invert.append(n.right)
         return root
 
+# Let's try a recursive solution
+    @staticmethod
+    def invertTree(root: Optional[TreeNode]) -> Optional[TreeNode]:
+        if not root:
+            return None
+        temp = root.left
+        root.left = Solution.invertTree(root.right)
+        root.right = Solution.invertTree(temp)
+        return root
 
 

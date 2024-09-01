@@ -41,3 +41,46 @@ class Solution:
 
         return True
 
+class Solution2:
+    # recursion April 2024
+    def calculate_height_of_node(self, node):
+        if node:
+            left_height = self.calculate_height_of_node(node.left)
+            right_height = self.calculate_height_of_node(node.right)
+            node.height = max(left_height, right_height) + 1
+            return node.height
+        else:
+            return 0
+
+
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+
+        self.calculate_height_of_node(root)
+        left_height = root.left.height if root.left else 0
+        right_height = root.right.height if root.right else 0
+
+        height_diff = abs(left_height - right_height)
+        if self.isBalanced(root.left) and self.isBalanced(root.right) and height_diff <= 1:
+            return True
+        else:
+            return False
+
+
+class Solution3:
+    # improved recursion April 2024
+    # calculate height in the same recursion
+
+    def isBalanced(self, root: Optional[TreeNode]) -> bool:
+        if root is None:
+            return True
+
+        if self.isBalanced(root.left) and self.isBalanced(root.right):
+            left_height = root.left.height if root.left else 0
+            right_height = root.right.height if root.right else 0
+            root.height = max(left_height, right_height) + 1
+            if abs(left_height - right_height) <= 1:
+                return True
+        else:
+            return False
