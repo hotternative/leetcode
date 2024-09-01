@@ -13,6 +13,10 @@ from utils.tree_utils import TreeNode
 # diameter of a tree = max(diameter of every node)
 # height = 0 if it's leaf else height = max (height left sub, height right sub) + 1
 
+# 37 ms Beats 96.83% Memory 19.83 MB Beats 5.70%v
+# Complexity: O(n^2) because for each node we are calculating height and diameter
+# Youtube: https://www.youtube.com/watch?v=ey7DYc9OANo
+
 class Solution:
     def find_height(self, node: Optional[TreeNode]) -> int:
         if not node:
