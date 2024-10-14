@@ -21,3 +21,22 @@ class Solution:
             else:
                 cs = new_common_str
         return cs
+
+
+class Solution2:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        pointer = 0
+        leading_str = strs[0]
+
+        while pointer < len(leading_str):
+            for s in strs:
+                if s[pointer] != leading_str[pointer]:
+                    return leading_str[0:pointer]
+            else:
+                pointer += 1
+
+
+
+if __name__ == "__main__":
+    strs = ["flower","flow","flight"]
+    assert Solution2.longestCommonPrefix(Solution2(), strs) == "fl"

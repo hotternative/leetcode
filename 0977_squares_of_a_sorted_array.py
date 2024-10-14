@@ -4,7 +4,7 @@ import unittest
 
 
 class Solution:
-    def sortedSquares(self, nums: List[int]) -> List[int]:
+    def sortedSquares3(self, nums: List[int]) -> List[int]:
         ans = []
         l, r = 0, len(nums)-1
         while l <= r:
@@ -71,6 +71,41 @@ class Solution:
             [ans.append(num ** 2) for num in nums[k:]]
         else:
             [ans.append(num ** 2) for num in nums[:j+1][::-1]]
+
+        return ans
+
+    def sortedSquares_trivial(self, nums: List[int]) -> List[int]:
+        return sorted([n**2 for n in nums])
+
+    def sortedSquares(self, nums: List[int]) -> List[int]:
+        # Runtime  163 ms Beats 21.25%
+        i = 0
+        while i < len(nums) - 1:
+            if nums[i] ** 2 >= nums[i + 1] ** 2:
+                i += 1
+            else:
+                break
+
+        ans = [nums[i] ** 2]
+        j = i
+        while i > 0 and j < len(nums) - 1:
+            if nums[i - 1] ** 2 <= nums[j + 1] ** 2:
+                i -= 1
+                ans.append(nums[i] ** 2)
+            else:
+                j += 1
+                ans.append(nums[j] ** 2)
+            continue
+
+        if i == 0:
+            while j < len(nums) - 1:
+                j += 1
+                ans.append(nums[j] ** 2)
+
+        else:
+            while i > 0:
+                i -= 1
+                ans.append(nums[i] ** 2)
 
         return ans
 

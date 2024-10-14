@@ -18,3 +18,12 @@ class Solution:
             j -= 1
 
         return True
+
+
+class Solution2:
+    def isPalindrome(self, head: Optional[ListNode]) -> bool:
+        vals = []
+        while head:
+            vals.append(head.val)
+            head = head.next
+        return vals == vals[::-1]
